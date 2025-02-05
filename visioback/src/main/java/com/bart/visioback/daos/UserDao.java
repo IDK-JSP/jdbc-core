@@ -28,11 +28,15 @@ public class UserDao {
         return jdbcTemplate.query(sql, userRowMapper);
     }
     public User findByEmail(String email) {
-        String sql = "SELECT * FROM user WHERE email = ?";
+        String sql = "SELECT * FROM user WHERE email like ?";
         return jdbcTemplate.query(sql, userRowMapper, email)
                 .stream()
                 .findFirst()
                 .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé"));
+    }
+    public Integer findIdByEmail(String email) {
+        String sql = "SELECT id FROM user WHERE email = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, email);
     }
     public User findById(int id) {
         String sql = "SELECT * FROM user WHERE id = ?";
