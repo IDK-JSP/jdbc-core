@@ -1,8 +1,16 @@
 package com.bart.visioback.entitys;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class Favoris {
     private int user_id;
+    @NotNull(message = "Un user id est requis")
+    @NotBlank(message = "Un user id est un entier")
+    
     private int movie_id;
+    @NotNull(message = "Un movie id est requis")
+    @NotBlank(message = "Un movie id est un entier")
 
     public Favoris( int user_id, int movie_id) {
         this.user_id = user_id;

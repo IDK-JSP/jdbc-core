@@ -1,8 +1,18 @@
 package com.bart.visioback.entitys;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class Movie {
+
     private int movie_id;
+    @NotNull(message = "Un movie id est requis")
+    @NotBlank(message = "Un movie id est un entier")
+
     private String title;
+    @NotBlank(message = "Le movie doit avoir un titre")
+    @NotNull(message = "Le movie doit avec un titre non nul")
+
     private String poster_path;
 
     public Movie(int movie_id, String poster_path, String title) {

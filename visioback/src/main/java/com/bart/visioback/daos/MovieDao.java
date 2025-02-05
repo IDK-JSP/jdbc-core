@@ -1,6 +1,7 @@
 package com.bart.visioback.daos;
 
 import com.bart.visioback.entitys.Movie;
+import com.bart.visioback.exceptions.ResourceNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -29,7 +30,7 @@ public class MovieDao {
         return jdbcTemplate.query(sql, movieRowMapper, id)
                 .stream()
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Produit avec l'ID : " + id + " n'existe pas"));
+                .orElseThrow(() -> new ResourceNotFoundException("Produit avec l'ID : " + id + " n'existe pas"));
     }
     public Movie save(Movie movie) {
 
